@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <utility>
 using namespace std;
 
 
@@ -26,7 +27,18 @@ int salesMatrix[hari][kategori] = {
 // Fungsi member 2
 
 
-// Fungsi member 3 -> punya andhika
+// Fungsi member 3 (Bubble sort)
+void urutkanHarga(bool ascending) {
+    for(int i = 0; i < totalItem - 1; i++) {
+        for(int j = 0; j < totalItem - i - 1; j++) {
+            if(ascending && hargaItem[j] > hargaItem[j + 1]) {
+                swap(hargaItem[j], hargaItem[j + 1]);
+            } else if(!ascending && hargaItem[j] < hargaItem[j + 1]) {
+                swap(hargaItem[j], hargaItem[j + 1]);
+            }
+        }
+    }
+}
 
 
 // Fungsi member 4
