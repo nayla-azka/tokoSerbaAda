@@ -26,7 +26,7 @@ int salesMatrix[hari][kategori] = {
 // Fungsi member 2
 
 
-// Fungsi member 3
+// Fungsi member 3 -> punya andhika
 
 
 // Fungsi member 4
