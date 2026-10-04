@@ -32,9 +32,15 @@ void urutkanHarga(bool ascending) {
     for(int i = 0; i < totalItem - 1; i++) {
         for(int j = 0; j < totalItem - i - 1; j++) {
             if(ascending && hargaItem[j] > hargaItem[j + 1]) {
+                swap(idItem[j], idItem[j + 1]);
+                swap(namaItem[j], namaItem[j + 1]);
                 swap(hargaItem[j], hargaItem[j + 1]);
+                swap(stokItem[j], stokItem[j + 1]);
             } else if(!ascending && hargaItem[j] < hargaItem[j + 1]) {
+                swap(idItem[j], idItem[j + 1]);
+                swap(namaItem[j], namaItem[j + 1]);
                 swap(hargaItem[j], hargaItem[j + 1]);
+                swap(stokItem[j], stokItem[j + 1]);
             }
         }
     }
