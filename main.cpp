@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+
 //Global Variables
 const int totalItem = 3;
 const int hari = 3;
@@ -32,7 +33,7 @@ int salesMatrix[hari][kategori] = {
 
 
 // Fungsi member 5
-
+//padilganteng
 
 // Fungsi member 6
 
