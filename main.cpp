@@ -45,6 +45,16 @@ void tampilkanInventaris() {
 }
 
 // Fungsi member 2
+int cariIndeksBarang(int ID){
+    for (int i = 0; i < totalItem; i++) {
+            if (idItem[i] == ID) {
+                return i;
+                break;
+            }
+    return -1
+
+}
+
 
 
 // Fungsi member 3 (Bubble sort)
@@ -128,19 +138,13 @@ void tambahKeKeranjang() {
 }
 
 // Fungsi member 6
-
-
-// Fungsi member 8
-int hitungPoinRekursif(int totalBelanja, int tier) {
-    if (totalBelanja < 10000 || tier <= 0) {
-        return 0;
+void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
+    if(catatHari >= 0 && catatHari <= 2 && catatKategori >= 0 && catatKategori <= 2){
+        salesMatrix[catatHari][catatKategori] += catatHarga;
+    }else{
+        cout<<"Error: Index hari tidak valid! Index berada pada interval 0<=index<=2";
     }
-    return 50 + (tier * 10) + hitungPoinRekursif(totalBelanja - 10000, tier - 1);
 }
-
-// Fungsi member, padilganteng
-
-
 // Fungsi member 7
 void tampilkanLaporan2D(){
     cout << "\n===============================================================\n"
@@ -171,5 +175,15 @@ void tampilkanLaporan2D(){
              << "TOTAL KESELURUHAN REVENUE : " << totalFinal << endl
              << "\n===============================================================\n";
 }
+
+// Fungsi member 8
+int hitungPoinRekursif(int totalBelanja, int tier) {
+    if (totalBelanja < 10000 || tier <= 0) {
+        return 0;
+    }
+    return 50 + (tier * 10) + hitungPoinRekursif(totalBelanja - 10000, tier - 1);
+}
+
+// Fungsi member, padilganteng
 
 // Fungsi member 9
