@@ -45,13 +45,14 @@ void tampilkanInventaris() {
 }
 
 // Fungsi member 2
+
 int cariIndeksBarang(int ID){
     for (int i = 0; i < totalItem; i++) {
             if (idItem[i] == ID) {
                 return i;
                 break;
             }
-    return -1
+    return -1;
 
 }
 
@@ -88,19 +89,13 @@ void tambahKeKeranjang() {
     
     while (lanjut == 'y' || lanjut == 'Y') {
         int targetID, jumlahBeli;
-        int indeksDitemukan = -1;
         
         cout << "\n--- Tambah ke Keranjang ---\n";
         cout << "Masukkan ID Barang yang ingin dibeli: ";
         cin >> targetID;
         
         // cari indeks barang berdasarkan ID
-        for (int i = 0; i < totalItem; i++) {
-            if (idItem[i] == targetID) {
-                indeksDitemukan = i;
-                break;
-            }
-        }
+        int indeks Ditemukan = cariIndeksBarang(targetID);
         
         // validasi Keberadaan Barang & Stok
         if (indeksDitemukan == -1) {
