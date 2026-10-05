@@ -174,15 +174,3 @@ void tampilkanLaporan2D(){
 }
 
 // Fungsi member 9
-int main(){
-    int inputHari, inputKategori, inputHarga;
-    cout<<"Masukkan index hari\t: "; cin>>inputHari;
-    cout<<"Masukkan index kategori\t: "; cin>>inputKategori;
-    cout<<"Masukkan harga\t: "; cin>>inputHarga;
-    CatatPenjualan2D(inputHari, inputKategori, inputHarga);
-    for(int i = 0; i <= hari; i++){
-        for(int j = 0; j <= kategori; j++){
-            cout<<"Hari ke-"<<i+1<<" "<<salesMatrix[i][j]<<endl;
-        }
-    }
-}
