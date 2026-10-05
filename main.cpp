@@ -131,7 +131,12 @@ void tambahKeKeranjang() {
 
 
 // Fungsi member 8
-
+int hitungPoinRekursif(int totalBelanja, int tier) {
+    if (totalBelanja < 10000 || tier <= 0) {
+        return 0;
+    }
+    return 50 + (tier * 10) + hitungPoinRekursif(totalBelanja - 10000, tier - 1);
+}
 
 // Fungsi member, padilganteng
 
