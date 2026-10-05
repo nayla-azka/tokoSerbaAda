@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <iomanip>
 using namespace std;
 
 
@@ -23,6 +24,25 @@ int salesMatrix[hari][kategori] = {
 
 // Fungsi member 1
 
+void tampilkanInventaris() {
+    cout << "=======================================================\n";
+    
+    cout << left << setw(8) << "ID" 
+         << setw(18) << "Nama Barang" 
+         << setw(16) << "Harga (Rp)" 
+         << "Stok\n";
+    cout << "=======================================================\n";
+
+    
+    for (int i = 0; i < totalItem; i++) {
+        cout << left << setw(8) << idItem[i] 
+             << setw(18) << namaItem[i] 
+             << setw(16) << hargaItem[i] 
+             << stokItem[i] << "\n";
+    }
+    
+    cout << "=======================================================\n";
+}
 
 // Fungsi member 2
 
