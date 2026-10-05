@@ -52,14 +52,14 @@ int cariIndeksBarang(int ID){
                 return i;
                 break;
             }
+    }
     return -1;
-
 }
 
 
 
 // Fungsi member 3 (Bubble sort)
-void urutkanHarga(bool ascending) {
+void urutkanHarga(bool ascending){
     for(int i = 0; i < totalItem - 1; i++) {
         for(int j = 0; j < totalItem - i - 1; j++) {
             if(ascending && hargaItem[j] > hargaItem[j + 1]) {
@@ -84,7 +84,7 @@ int qtyKeranjang[100];
 int jumlahJenisKeranjang = 0;
 
 // Fungsi member 4
-void tambahKeKeranjang() {
+void tambahKeKeranjang(){
     char lanjut = 'y';
     
     while (lanjut == 'y' || lanjut == 'Y') {
@@ -95,7 +95,7 @@ void tambahKeKeranjang() {
         cin >> targetID;
         
         // cari indeks barang berdasarkan ID
-        int indeks Ditemukan = cariIndeksBarang(targetID);
+        int indeksDitemukan = cariIndeksBarang(targetID);
         
         // validasi Keberadaan Barang & Stok
         if (indeksDitemukan == -1) {
