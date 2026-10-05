@@ -38,6 +38,35 @@ int salesMatrix[hari][kategori] = {
 
 
 // Fungsi member 7
+void tampilkanLaporan2D(){
+    cout << "\n===============================================================\n"
+         << "         MATRIKS REKAP PENJUALAN 2D (3 HARI X 3 KATEGORI         \n"
+         << "\n===============================================================\n"
+         << "Hari\t\tMinuman\t\tMakanan\t\tLainnya\t\tTotal\n"
+         << "----------------------------------------------------------------";
+         
+        int totalFinal = 0;
+        for(int h = 0; h < hari; h++){
+
+            int totalHarian = 0;
+
+            cout << "Hari " << (h + 1) << "\t\t";
+
+            for(int k = 0; k < kategori; k++){
+                    cout << "Rp " << salesMatrix[h][k] << "\t";
+
+                    totalHarian += salesMatrix[h][k];
+                }
+
+            cout << "Rp " << totalHarian << endl;
+
+            totalFinal += totalHarian;
+        }
+            
+        cout << "----------------------------------------------------------------\n"
+             << "TOTAL KESELURUHAN REVENUE : " << totalFinal << endl
+             << "\n===============================================================\n";
+}
 
 
 // Fungsi member 8
