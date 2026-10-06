@@ -179,7 +179,7 @@ int hitungPoinRekursif(int totalBelanja, int tier) {
 }
 
 //fungsi member 5 
-void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata){
+void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata, int hari){
     if (jmljeniskeranjang==0){
         cout<<"\n keranjang masih kosong";
         return;
@@ -189,16 +189,13 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
     for (int i = 0; i < jmljeniskeranjang;i++){
         int id = idkeranjang[i];
         int qty = jumlahkeranjang[i];
-        int idx = -1;
-        for (int j= 0; j<totaldata; j++){
-            if (iditem[j]==id){
-                idx = j;
-                break;
-            }
-        }
+        int idx = cariIndeksBarang(id);
+        
         if (idx!=-1){
             int totalhargaitem = hargaitem[idx] * qty;
             subtotal += totalhargaitem;
+            int kategori = idx % 3;
+            CatatPenjualan2D(hari, kategori, totalhargaitem);
             cout<<namaItem[idx]<<" x"<<qty<<" = Rp."<<totalhargaitem<<endl;
         }
     }
@@ -233,13 +230,14 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
         int id = idkeranjang[i];
         int qty = jumlahkeranjang[i];
 
-        for (int j = 0; j < totaldata; j++) {
-            if (iditem[j] == id) {
-                stokItem[j] -= qty; 
+        int idx = cariIndeksBarang(id);
+            if (idx != -1) {
+                stokItem[idx] -= qty; 
                 break;
             }
-        }
+        
     }
+    jmljeniskeranjang=0;
 
     cout << "[Sukses] Transaksi Selesai & Stok Diperbarui!\n";
 
