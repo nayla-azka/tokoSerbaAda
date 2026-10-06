@@ -8,7 +8,7 @@ using namespace std;
 //Global Variables
 const int totalItem = 3;
 const int hari = 3;
-const int kategori = 3;
+const int kategori = 3; 
 
 int idItem[totalItem] = {101, 102, 103};
 string namaItem[totalItem] = {"Kopi Susu", "Roti Bakar", "Teh Manis"};
@@ -131,21 +131,68 @@ void tambahKeKeranjang(){
         cin >> lanjut;
     }
 }
-// Fungsi member 5
+// Fungsi member 6
+void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
+    if(catatHari >= 0 && catatHari <= 2 && catatKategori >= 0 && catatKategori <= 2){
+        salesMatrix[catatHari][catatKategori] += catatHarga;
+    }else{
+        cout<<"Error: Index hari tidak valid! Index berada pada interval 0<=index<=2";
+    }
+}
+// Fungsi member 7
+void tampilkanLaporan2D(){
+    cout << "\n===============================================================\n"
+         << "         MATRIKS REKAP PENJUALAN 2D (3 HARI X 3 KATEGORI         \n"
+         << "\n===============================================================\n"
+         << "Hari\t\tMinuman\t\tMakanan\t\tLainnya\t\tTotal\n"
+         << "----------------------------------------------------------------\n";
+         
+        int totalFinal = 0;
+        for(int h = 0; h < hari; h++){
+
+            int totalHarian = 0;
+
+            cout << "Hari " << (h + 1) << "\t\t";
+
+            for(int k = 0; k < kategori; k++){
+                    cout << "Rp " << salesMatrix[h][k] << "\t";
+
+                    totalHarian += salesMatrix[h][k];
+                }
+
+            cout << "Rp " << totalHarian << endl;
+
+            totalFinal += totalHarian;
+        }
+            
+        cout << "----------------------------------------------------------------\n"
+             << "TOTAL KESELURUHAN REVENUE : " << totalFinal << endl
+             << "\n===============================================================\n";
+}
+
+// Fungsi member 8
+int hitungPoinRekursif(int totalBelanja, int tier) {
+    if (totalBelanja < 10000 || tier <= 0) {
+        return 0;
+    }
+    return 50 + (tier * 10) + hitungPoinRekursif(totalBelanja - 10000, tier - 1);
+}
+
+//fungsi member 5 
 void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata){
     if (jmljeniskeranjang==0){
         cout<<"\n keranjang masih kosong";
         return;
     }
     int subtotal=0;
-    cout<<"\n=================== STRUK BELANJA ===================";
+    cout<<"\n=================== STRUK BELANJA ===================\n";
     for (int i = 0; i < jmljeniskeranjang;i++){
         int id = idkeranjang[i];
         int qty = jumlahkeranjang[i];
         int idx = -1;
         for (int j= 0; j<totaldata; j++){
             if (iditem[j]==id){
-                idx = j:
+                idx = j;
                 break;
             }
         }
@@ -197,53 +244,92 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
     cout << "[Sukses] Transaksi Selesai & Stok Diperbarui!\n";
 
 }
-// Fungsi member 6
-void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
-    if(catatHari >= 0 && catatHari <= 2 && catatKategori >= 0 && catatKategori <= 2){
-        salesMatrix[catatHari][catatKategori] += catatHarga;
-    }else{
-        cout<<"Error: Index hari tidak valid! Index berada pada interval 0<=index<=2";
-    }
-}
-// Fungsi member 7
-void tampilkanLaporan2D(){
-    cout << "\n===============================================================\n"
-         << "         MATRIKS REKAP PENJUALAN 2D (3 HARI X 3 KATEGORI         \n"
-         << "\n===============================================================\n"
-         << "Hari\t\tMinuman\t\tMakanan\t\tLainnya\t\tTotal\n"
-         << "----------------------------------------------------------------";
-         
-        int totalFinal = 0;
-        for(int h = 0; h < hari; h++){
-
-            int totalHarian = 0;
-
-            cout << "Hari " << (h + 1) << "\t\t";
-
-            for(int k = 0; k < kategori; k++){
-                    cout << "Rp " << salesMatrix[h][k] << "\t";
-
-                    totalHarian += salesMatrix[h][k];
-                }
-
-            cout << "Rp " << totalHarian << endl;
-
-            totalFinal += totalHarian;
-        }
-            
-        cout << "----------------------------------------------------------------\n"
-             << "TOTAL KESELURUHAN REVENUE : " << totalFinal << endl
-             << "\n===============================================================\n";
-}
-
-// Fungsi member 8
-int hitungPoinRekursif(int totalBelanja, int tier) {
-    if (totalBelanja < 10000 || tier <= 0) {
-        return 0;
-    }
-    return 50 + (tier * 10) + hitungPoinRekursif(totalBelanja - 10000, tier - 1);
-}
-
-// Fungsi member, padilganteng
-
 // Fungsi member 9
+int main(){
+    int pilihan;
+    char ulang;
+    do {
+        cout << "======================================================\n";
+        cout << "SISTEM MANAJEMEN RETAIL & ANALYTICS TOSERBA HIGHFIVE5\n";
+        cout << "======================================================\n";
+        cout << "1. Lihat Inventaris Barang\n";
+        cout << "2. Proses Transaksi Kasir\n";
+        cout << "3. Urutkan Barang\n";
+        cout << "4. Lihat Laporan Penjualan\n";
+        cout << "5. Hitung Simulasi Poin Loyalty\n";
+        cout << "6. Keluar System\n";
+        cout << "======================================================\n";
+        cout << "Piih Menu (1-6): ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+            case 1:
+                tampilkanInventaris();
+                break;
+        
+            case 2:
+                tambahKeKeranjang();
+                prosesPenjualan(idKeranjang, qtyKeranjang, jumlahJenisKeranjang, idItem, namaItem, hargaItem, stokItem, totalItem);
+                break;
+        
+            case 3: {
+                int opsi;
+                cout << "Pilih Urutan Harga:\n";
+                cout << "1. Termurah ke Termahal (Ascending)\n";
+                cout << "2. Termahal ke Termurah (Descending)\n";
+                cout << "Pilihan: ";
+                cin >> opsi;
+                
+                if (opsi == 1){
+                    urutkanHarga(true);
+                    cout << "\n[Sukses] Barang berhasil diurutkan dari termurah ke termahal\n";
+                    tampilkanInventaris();
+                }
+                else if (opsi == 2){
+                    urutkanHarga(false);
+                    cout << "\n[Sukses] Barang berhasil diurutkan dari termahal ke termurah\n";
+                    tampilkanInventaris();
+                }
+                else {
+                    cout << "\nPilihan Tidak Valid!\n";
+                }
+                break;
+            }
+                
+            case 4:
+                tampilkanLaporan2D();
+                break;
+        
+            case 5: {
+                int totalBelanja, tier = 3;
+                cout << "--- SIMULASI POIN LOYALTY ---\n";
+                cout << "Masukkan nominal simulasi belanja (Rp): ";
+                cin >> totalBelanja; 
+
+                int totalPoin = hitungPoinRekursif(totalBelanja, tier);
+                cout << "Hasil Perhitungan Simulasi Poin Loyalty: " << totalPoin << " Poin Loyalty\n";
+                break;
+            }
+
+            case 6:
+                cout << "\nTerima kasih telah menggunakan Sistem Manajemen Toserba HIGHFIVE5!\n";
+                break;
+
+            default:
+                cout << "Pilihan menu tidak valid! Silahkan coba lagi.\n";
+                break;
+        }
+        
+        if (pilihan == 6){
+            break;
+        }
+        
+        cout << "\nKembali ke menu utama? (y/n): ";
+        cin >> ulang;
+        cout << endl;
+    }
+    
+    while (ulang == 'Y' || ulang == 'y');
+    cout << "Program Selesai.\n";
+
+}
