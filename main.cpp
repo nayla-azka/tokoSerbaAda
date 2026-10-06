@@ -249,7 +249,6 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
 // Fungsi member 9
 int main(){
     int pilihan;
-    char ulang;
     do {
         cout << "======================================================\n";
         cout << "SISTEM MANAJEMEN RETAIL & ANALYTICS TOSERBA HIGHFIVE5\n";
@@ -271,7 +270,7 @@ int main(){
         
             case 2:
                 tambahKeKeranjang();
-                prosesPenjualan(idKeranjang, qtyKeranjang, jumlahJenisKeranjang, idItem, namaItem, hargaItem, stokItem, totalItem);
+                prosesPenjualan(idKeranjang, qtyKeranjang, jumlahJenisKeranjang, idItem, namaItem, hargaItem, stokItem, totalItem, hari);
                 break;
         
             case 3: {
@@ -322,16 +321,9 @@ int main(){
                 break;
         }
         
-        if (pilihan == 6){
-            break;
-        }
-        
-        cout << "\nKembali ke menu utama? (y/n): ";
-        cin >> ulang;
-        cout << endl;
     }
     
-    while (ulang == 'Y' || ulang == 'y');
+    while (pilihan !=6);
     cout << "Program Selesai.\n";
 
 }
