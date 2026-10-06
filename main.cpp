@@ -131,7 +131,72 @@ void tambahKeKeranjang(){
         cin >> lanjut;
     }
 }
+// Fungsi member 5
+void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata){
+    if (jmljeniskeranjang==0){
+        cout<<"\n keranjang masih kosong";
+        return;
+    }
+    int subtotal=0;
+    cout<<"\n=================== STRUK BELANJA ===================";
+    for (int i = 0; i < jmljeniskeranjang;i++){
+        int id = idkeranjang[i];
+        int qty = jumlahkeranjang[i];
+        int idx = -1;
+        for (int j= 0; j<totaldata; j++){
+            if (iditem[j]==id){
+                idx = j:
+                break;
+            }
+        }
+        if (idx!=-1){
+            int totalhargaitem = hargaitem[idx] * qty;
+            subtotal += totalhargaitem;
+            cout<<namaItem[idx]<<" x"<<qty<<" = Rp."<<totalhargaitem<<endl;
+        }
+    }
+    double persendiskon = 0.0;
+    if (subtotal>=100000){
+        persendiskon=0.15;
+    }else if(subtotal>=50000){
+        persendiskon=0.10;
+    }else{
+        persendiskon=0.0;
+    }
+    int diskon = subtotal*persendiskon;
+    int total = subtotal - diskon;
+    int poinBonus = hitungPoinRekursif(total, 3);
+    cout << "-----------------------------------------------\n";
+    cout << "Subtotal     : Rp" << subtotal << endl;
+    cout << "Diskon (" << (int)(persendiskon * 100) << "%)  : Rp" << diskon << endl;
+    cout << "Total Bayar  : Rp" << total << endl;
+    cout << "Poin Bonus (Rekursif): " << poinBonus << " pts\n";
+    cout << "===============================================\n";
+    int uangBayar = 0;
+    do {
+        cout << "Masukkan Uang Pembayaran: Rp";
+        cin >> uangBayar;
+        if (uangBayar < total) {
+            cout << "[Gagal] Uang pembayaran kurang! Silakan masukkan jumlah yang cukup.\n";
+        }
+    } while (uangBayar < total);
+    int kembalian = uangBayar - total;
+    cout << "Kembalian    : Rp" << kembalian << endl;
+    for (int i = 0; i < jmljeniskeranjang; i++) {
+        int id = idkeranjang[i];
+        int qty = jumlahkeranjang[i];
 
+        for (int j = 0; j < totaldata; j++) {
+            if (iditem[j] == id) {
+                stokItem[j] -= qty; 
+                break;
+            }
+        }
+    }
+
+    cout << "[Sukses] Transaksi Selesai & Stok Diperbarui!\n";
+
+}
 // Fungsi member 6
 void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
     if(catatHari >= 0 && catatHari <= 2 && catatKategori >= 0 && catatKategori <= 2){
