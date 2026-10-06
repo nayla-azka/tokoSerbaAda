@@ -133,10 +133,14 @@ void tambahKeKeranjang(){
 }
 // Fungsi member 6
 void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
-    if(catatHari >= 0 && catatHari <= 2 && catatKategori >= 0 && catatKategori <= 2){
+    if(catatHari >= 0 && catatHari <= hari-1 && catatKategori >= 0 && catatKategori <= kategori-1){
         salesMatrix[catatHari][catatKategori] += catatHarga;
+    }else if(catatHari < 0 && catatHari > hari-1 && catatKategori < 0 && catatKategori > kategori-1){
+        cout<<"Error: Index tidak valid!"<<endl<<"Index hari berada pada interval 0-"<<hari-1<<"!"<<endl<<"Index kategori berada pada interval 0-"<<kategori-1<<"!"<<endl;
+    }else if(catatHari < 0 && catatHari > hari-1){
+        cout<<"Error: Index tidak valid!"<<endl<<"Index hari berada pada interval 0-"<<hari-1<<"!"<<endl;
     }else{
-        cout<<"Error: Index hari tidak valid! Index berada pada interval 0<=index<=2";
+        cout<<"Error: Index tidak valid!"<<endl<<"Index kategori berada pada interval 0-"<<kategori-1<<"!"<<endl;
     }
 }
 // Fungsi member 7
