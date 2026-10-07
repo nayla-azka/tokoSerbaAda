@@ -50,13 +50,10 @@ int cariIndeksBarang(int ID){
     for (int i = 0; i < totalItem; i++) {
             if (idItem[i] == ID) {
                 return i;
-                break;
             }
     }
     return -1;
 }
-
-
 
 // Fungsi member 3 (Bubble sort)
 void urutkanHarga(bool ascending){
@@ -76,7 +73,6 @@ void urutkanHarga(bool ascending){
         }
     }
 }
-
 
 // variabel globalnya
 int idKeranjang[100];
@@ -119,9 +115,6 @@ void tambahKeKeranjang(){
                 qtyKeranjang[jumlahJenisKeranjang] = jumlahBeli;
                 jumlahJenisKeranjang++;
                 
-                // potong stok barang di inventaris utama
-                stokItem[indeksDitemukan] -= jumlahBeli;
-                
                 cout << "[SUKSES] " << jumlahBeli << " " << namaItem[indeksDitemukan] 
                 << " berhasil ditambahkan ke keranjang.\n";
             }
@@ -133,20 +126,17 @@ void tambahKeKeranjang(){
 }
 // Fungsi member 6
 void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
-    if(catatHari >= 0 && catatHari <= hari-1 && catatKategori >= 0 && catatKategori <= kategori-1){
+    if(catatHari >= 0 && catatHari < hari && catatKategori >= 0 && catatKategori < kategori){
         salesMatrix[catatHari][catatKategori] += catatHarga;
-    }else if(catatHari < 0 && catatHari > hari-1 && catatKategori < 0 && catatKategori > kategori-1){
-        cout<<"Error: Index tidak valid!"<<endl<<"Index hari berada pada interval 0-"<<hari-1<<"!"<<endl<<"Index kategori berada pada interval 0-"<<kategori-1<<"!"<<endl;
-    }else if(catatHari < 0 && catatHari > hari-1){
-        cout<<"Error: Index tidak valid!"<<endl<<"Index hari berada pada interval 0-"<<hari-1<<"!"<<endl;
     }else{
-        cout<<"Error: Index tidak valid!"<<endl<<"Index kategori berada pada interval 0-"<<kategori-1<<"!"<<endl;
+        cout<<"Error: Index tidak valid!"<<endl;
     }
 }
+
 // Fungsi member 7
 void tampilkanLaporan2D(){
     cout << "\n===============================================================\n"
-         << "         MATRIKS REKAP PENJUALAN 2D (3 HARI X 3 KATEGORI         \n"
+         << "        MATRIKS REKAP PENJUALAN 2D (3 HARI X 3 KATEGORI)         "
          << "\n===============================================================\n"
          << "Hari\t\tMinuman\t\tMakanan\t\tLainnya\t\tTotal\n"
          << "----------------------------------------------------------------\n";
@@ -170,7 +160,7 @@ void tampilkanLaporan2D(){
         }
             
         cout << "----------------------------------------------------------------\n"
-             << "TOTAL KESELURUHAN REVENUE : " << totalFinal << endl
+             << "TOTAL KESELURUHAN REVENUE : Rp " << totalFinal
              << "\n===============================================================\n";
 }
 
@@ -183,7 +173,17 @@ int hitungPoinRekursif(int totalBelanja, int tier) {
 }
 
 //fungsi member 5 
-void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata, int hari){
+void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int& jmljeniskeranjang, int iditem[], string namaitem[], int hargaitem[], int stokitem[], int totaldata, int hari){
+    int inputHari;
+    do{
+        cout << "Masukkan Hari Transaksi (1-3): "; cin >> inputHari;
+        if(inputHari < 1 || inputHari > hari){
+            cout << "[ERROR] input hari tidak valid!\n";
+        }
+    } while (inputHari < 1 || inputHari > hari);
+
+    int indexHari = inputHari - 1;
+
     if (jmljeniskeranjang==0){
         cout<<"\n keranjang masih kosong";
         return;
@@ -198,8 +198,7 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
         if (idx!=-1){
             int totalhargaitem = hargaitem[idx] * qty;
             subtotal += totalhargaitem;
-            int kategori = idx % 3;
-            CatatPenjualan2D(hari, kategori, totalhargaitem);
+            CatatPenjualan2D(indexHari, indexKategoriItem[idx], totalhargaitem);
             cout<<namaItem[idx]<<" x"<<qty<<" = Rp."<<totalhargaitem<<endl;
         }
     }
@@ -236,8 +235,7 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int jmljeniskeran
 
         int idx = cariIndeksBarang(id);
             if (idx != -1) {
-                stokItem[idx] -= qty; 
-                break;
+                stokItem[idx] -= qty;
             }
         
     }
