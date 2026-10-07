@@ -23,7 +23,6 @@ int salesMatrix[hari][kategori] = {
 };
 
 // Fungsi member 1
-
 void tampilkanInventaris() {
     cout << "=======================================================\n";
     
@@ -45,7 +44,6 @@ void tampilkanInventaris() {
 }
 
 // Fungsi member 2
-
 int cariIndeksBarang(int ID){
     for (int i = 0; i < totalItem; i++) {
             if (idItem[i] == ID) {
@@ -126,6 +124,7 @@ void tambahKeKeranjang(){
         cin >> lanjut;
     }
 }
+
 // Fungsi member 6
 void CatatPenjualan2D(int catatHari, int catatKategori, int catatHarga){
     if(catatHari >= 0 && catatHari < hari && catatKategori >= 0 && catatKategori < kategori){
@@ -246,6 +245,7 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int& jmljeniskera
     cout << "[Sukses] Transaksi Selesai & Stok Diperbarui!\n";
 
 }
+
 // Fungsi member 9
 int main(){
     int pilihan;
