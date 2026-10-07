@@ -64,11 +64,13 @@ void urutkanHarga(bool ascending){
                 swap(namaItem[j], namaItem[j + 1]);
                 swap(hargaItem[j], hargaItem[j + 1]);
                 swap(stokItem[j], stokItem[j + 1]);
+                swap(indexKategoriItem[j], indexKategoriItem[j]);
             } else if(!ascending && hargaItem[j] < hargaItem[j + 1]) {
                 swap(idItem[j], idItem[j + 1]);
                 swap(namaItem[j], namaItem[j + 1]);
                 swap(hargaItem[j], hargaItem[j + 1]);
                 swap(stokItem[j], stokItem[j + 1]);
+                swap(indexKategoriItem[j], indexKategoriItem[j]);
             }
         }
     }
