@@ -114,6 +114,8 @@ void tambahKeKeranjang(){
                 idKeranjang[jumlahJenisKeranjang] = targetID;
                 qtyKeranjang[jumlahJenisKeranjang] = jumlahBeli;
                 jumlahJenisKeranjang++;
+
+                stokItem[indeksDitemukan] -= jumlahBeli;
                 
                 cout << "[SUKSES] " << jumlahBeli << " " << namaItem[indeksDitemukan] 
                 << " berhasil ditambahkan ke keranjang.\n";
