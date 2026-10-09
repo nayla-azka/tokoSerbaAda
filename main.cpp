@@ -237,9 +237,6 @@ void prosesPenjualan(int idkeranjang[], int jumlahkeranjang[], int& jmljeniskera
         int qty = jumlahkeranjang[i];
 
         int idx = cariIndeksBarang(id);
-            if (idx != -1) {
-                stokItem[idx] -= qty;
-            }
         
     }
     jmljeniskeranjang=0;
